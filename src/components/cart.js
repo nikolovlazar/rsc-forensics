@@ -9,7 +9,7 @@ function loadCartItems() {
         { id: 3, title: "Boots", price: 200 },
       ];
       resolve(items);
-    }, 5000);
+    }, 1000);
   });
 }
 

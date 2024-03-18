@@ -14,7 +14,7 @@ async function getProducts() {
         { id: 8, title: "Coat", price: 150 },
       ];
       resolve(items);
-    }, 10000);
+    }, 5000);
   });
 }
 
