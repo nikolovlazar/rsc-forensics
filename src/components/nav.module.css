@@ -1,0 +1,26 @@
+.navbar {
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  --link-hover-color: blue;
+}
+
+.logo:hover {
+  color: var(--link-hover-color);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.link:hover {
+  color: var(--link-hover-color);
+}
