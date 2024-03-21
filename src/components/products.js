@@ -1,17 +1,10 @@
 import { headers } from "next/headers";
-import dynamic from "next/dynamic";
 
-// import AddToCart from "./addToCart";
-const AddToCart = dynamic(() => import("./addToCart"), { ssr: false });
+import AddToCartWrapper from "./addToCartWrapper";
 
 async function getProducts() {
   return new Promise((resolve) => {
     setTimeout(function () {
-      console.log("Deciding whether to crash or not...");
-      const rand = Math.floor(Math.random() * 10);
-      if (rand > 5) {
-        throw new Error("Oh damn you shipped addToCart.js for nothing 🤷‍♂️ ");
-      }
       const items = [
         { id: 1, title: "Gloves", price: 20 },
         { id: 2, title: "Scarf", price: 50 },
@@ -28,8 +21,9 @@ async function getProducts() {
 }
 
 export async function Products() {
+  // Using headers() to mark this component as Dynamically Rendered.
+  // a.k.a. it will be executed on every request instead of at build time.
   headers();
-  // console.log("Statically-rendering the Products component at build time.");
 
   const products = await getProducts();
   return (
@@ -37,7 +31,7 @@ export async function Products() {
       {products.map((product) => (
         <li key={product.id}>
           {product.title} - ${product.price}
-          <AddToCart />
+          {product.price <= 20 && <AddToCartWrapper />}
         </li>
       ))}
     </ul>
