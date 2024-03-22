@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 
+import styles from "./addToCart.module.css";
+
 function createInitialNumber() {
   while (true) {
     const rand = Math.floor(Math.random() * 100);
@@ -27,5 +29,9 @@ export default function AddToCart() {
     }
   }, [num]);
 
-  return <button onClick={() => alert("Added!")}>Add to cart {num}</button>;
+  return (
+    <button className={styles["add-to-cart"]} onClick={() => alert("Added!")}>
+      Add to cart {num}
+    </button>
+  );
 }

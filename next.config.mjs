@@ -1,6 +1,10 @@
 import { withSentryConfig } from "@sentry/nextjs";
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ["@sentry/profiling-node"],
+  },
+};
 
 export default withSentryConfig(
   nextConfig,
@@ -41,4 +45,3 @@ export default withSentryConfig(
     automaticVercelMonitors: true,
   },
 );
-
