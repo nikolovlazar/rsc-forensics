@@ -26,6 +26,9 @@ export async function Products() {
   headers();
 
   const products = await getProducts();
+
+  console.log("Another log logged from a server component");
+
   return (
     <ul>
       {products.map((product) => (

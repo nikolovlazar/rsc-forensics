@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 
 import styles from "./addToCart.module.css";
+import ServerComponent from "./serverComponent";
 
 function createInitialNumber() {
   while (true) {
@@ -30,8 +31,11 @@ export default function AddToCart() {
   }, [num]);
 
   return (
-    <button className={styles["add-to-cart"]} onClick={() => alert("Added!")}>
-      Add to cart {num}
-    </button>
+    <>
+      <button className={styles["add-to-cart"]} onClick={() => alert("Added!")}>
+        Add to cart {num}
+      </button>
+      <ServerComponent />
+    </>
   );
 }
