@@ -1,3 +1,4 @@
+import { startSpan } from "@sentry/nextjs";
 import { headers } from "next/headers";
 
 import AddToCartWrapper from "./addToCartWrapper";
@@ -16,7 +17,7 @@ async function getProducts() {
         { id: 8, title: "Coat", price: 150 },
       ];
       resolve(items);
-    }, 5000);
+    }, 3000);
   });
 }
 
@@ -25,7 +26,12 @@ export async function Products() {
   // a.k.a. it will be executed on every request instead of at build time.
   headers();
 
-  const products = await getProducts();
+  const products = await startSpan(
+    {
+      name: "getProducts",
+    },
+    getProducts,
+  );
 
   console.log("Another log logged from a server component");
 
